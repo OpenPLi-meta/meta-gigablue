@@ -2,7 +2,6 @@ SUMMARY = "HbbTV for QT browser"
 SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "CLOSED"
-# require conf/license/license-close.inc
 PACKAGE_ARCH := "${MACHINE_ARCH}"
 
 SRCDATE = "20181019_r0"
@@ -27,7 +26,6 @@ S = "${WORKDIR}"
 
 PLUGINPATH = "${libdir}/enigma2/python/Plugins/Extensions/HbbTV"
 
-#PACKAGES =+ "${PN}-src"
 FILES_${PN} = "${bindir} ${libdir}/mozilla/plugins/libhbbtvbrowserplugin.so ${PLUGINPATH}/*.pyo ${PLUGINPATH}/dumpait"
 FILES_${PN}-src = "${PLUGINPATH}/*.py"
 
@@ -47,7 +45,7 @@ do_install_append() {
     python2 -O -m compileall ${D}
 }
 
-pkg_postinst_${PN}(){
+pkg_postinst_ontarget_${PN}(){
 #!/bin/sh
 ln -sf /usr/share/fonts /usr/lib/fonts
 
@@ -63,4 +61,4 @@ exit 0
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
-INSANE_SKIP_${PN} += "already-stripped file-rdeps"
+INSANE_SKIP_${PN} += "already-stripped file-rdeps ldflags"
