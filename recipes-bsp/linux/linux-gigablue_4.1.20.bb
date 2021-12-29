@@ -51,6 +51,7 @@ SRC_URI += "http://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-20
     file://kernel-add-support-for-gcc9.patch \
     file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
     file://0003-uaccess-dont-mark-register-as-const.patch \
+    file://make-yyloc-declaration-extern.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"
