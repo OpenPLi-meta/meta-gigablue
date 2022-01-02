@@ -42,7 +42,7 @@ do_install(){
 
 # Just a quick hack to "compile" the python parts.
 do_install_append() {
-    python -O -m compileall ${D}
+    python3 -O -m compileall ${D}
 }
 
 pkg_postinst_ontarget_${PN}(){
