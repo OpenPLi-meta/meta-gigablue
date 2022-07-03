@@ -53,6 +53,7 @@ EXTRA_IMAGEDEPENDS = "\
     "
 
 IMAGE_INSTALL_append += "\
+    bluetoothsetup-gb7252 \
     "
 
 OPTIONAL_BSP_ENIGMA2_PACKAGES = "\
