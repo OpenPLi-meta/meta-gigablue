@@ -57,7 +57,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-zd1211rw \
 	"
 	
-MACHINE_FEATURES += " alsa usbhost wlan switchoff osdposition hdmicec"
+MACHINE_FEATURES += " hisil alsa usbhost wlan switchoff osdposition hdmicec"
 
 IMAGE_CLASSES  += "gigablue-emmc_image"
 IMAGE_FSTYPES += "gigablueemmc"
