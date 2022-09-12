@@ -1,7 +1,42 @@
+diff --git a/OTAUpdate.py b/OTAUpdate.py
+index b27a7eb..703bf2b 100644
+--- a/OTAUpdate.py
++++ b/OTAUpdate.py
+@@ -20,9 +20,9 @@ from Components.ProgressBar import ProgressBar
+ # Timer
+ from enigma import eTimer
+ 
+-import bt_types
+-from bt_types import getEventDesc
+-from bt_task import BluetoothTask
++from . import bt_types
++from .bt_types import getEventDesc
++from .bt_task import BluetoothTask
+ 
+ OTA_ERROR_SERVICE_DISCOVERY = 0
+ OTA_BATTERY_LEVEL = 1
 diff --git a/bt.py b/bt.py
-index e89913c..39ffce5 100644
+index e89913c..0aa1bea 100644
 --- a/bt.py
 +++ b/bt.py
+@@ -30,12 +30,12 @@ from enigma import eDVBVolumecontrol
+ import os
+ import re
+ import time
+-import gbbt
+-from bt_types import getEventDesc, isAudioProfile, getIcon
+-import bt_types
+-from bt_task import BluetoothTask
++from . import gbbt
++from .bt_types import getEventDesc, isAudioProfile, getIcon
++from . import bt_types
++from .bt_task import BluetoothTask
+ 
+-from OTAUpdate import GbRcuOtaUpdate
++from .OTAUpdate import GbRcuOtaUpdate
+ 
+ BT_AUDIO_DELAY_PROC = "/proc/stb/audio/btaudio_delay_pcm"
+ BT_AUDIO_ONOFF_PROC = "/proc/stb/audio/btaudio"
 @@ -337,7 +337,7 @@ class BTAutoAudioConnect:
  				self.gbbt.stopAudioDevice()
  
@@ -121,10 +156,52 @@ index e89913c..39ffce5 100644
  		self.gbbt.setVoiceCheckDB(int_value)
  
  	def check_status(self):
+diff --git a/bt_scan.py b/bt_scan.py
+index 18bbe66..5832e78 100644
+--- a/bt_scan.py
++++ b/bt_scan.py
+@@ -5,11 +5,11 @@ from Components.config import config
+ from Components.Sources.List import List
+ from Components.Sources.StaticText import StaticText
+ from enigma import eTimer
+-from bt_types import getEventDesc, isAudioProfile, getIcon
+-from bt import pybluetooth_instance
+-from bt_config import BluetoothSetupConfig
+-import bt_types
+-from bt_task import BluetoothTask
++from .bt_types import getEventDesc, isAudioProfile, getIcon
++from .bt import pybluetooth_instance
++from .bt_config import BluetoothSetupConfig
++from . import bt_types
++from .bt_task import BluetoothTask
+ 
+ class BluetoothDiscovery(BluetoothTask):
+ 	def __init__(self, ble):
 diff --git a/bt_setup.py b/bt_setup.py
-index 3bc835b..1c12065 100644
+index 3bc835b..d350ab4 100644
 --- a/bt_setup.py
 +++ b/bt_setup.py
+@@ -8,13 +8,13 @@ from Components.config import config
+ from Components.Sources.List import List
+ from Components.Sources.StaticText import StaticText
+ from enigma import eTimer
+-from bt_types import getEventDesc, isAudioProfile, getIcon
+-from bt import pybluetooth_instance
+-from bt_config import BluetoothSetupConfig
+-from bt_scan import BluetoothDiscoveryScreen, BluetoothRCUSetup
+-from bt_task import BluetoothTask
+-import bt_types
+-from OTAUpdate import GbRcuOtaUpdate
++from .bt_types import getEventDesc, isAudioProfile, getIcon
++from .bt import pybluetooth_instance
++from .bt_config import BluetoothSetupConfig
++from .bt_scan import BluetoothDiscoveryScreen, BluetoothRCUSetup
++from .bt_task import BluetoothTask
++from . import bt_types
++from .OTAUpdate import GbRcuOtaUpdate
+ 
+ class BluetoothSetup(BluetoothTask):
+ 	def __init__(self):
 @@ -532,7 +532,7 @@ class BluetoothSetupScreen(Screen, HelpableScreen, BluetoothSetup):
  			return
  
@@ -152,3 +229,38 @@ index 3824936..05a496e 100644
 +		print("		mac : ", task["mac"])
 +		print("		args : ", task["args"])
 +		print("		eventCB : ", task["eventCB"])
+diff --git a/gbbt.py b/gbbt.py
+index 160bc37..fbf3d5a 100644
+--- a/gbbt.py
++++ b/gbbt.py
+@@ -17,7 +17,7 @@ if version_info >= (2, 6, 0):
+         try:
+             fp, pathname, description = imp.find_module('_gbbt', [dirname(__file__)])
+         except ImportError:
+-            import _gbbt
++            from . import _gbbt
+             return _gbbt
+         if fp is not None:
+             try:
+@@ -28,7 +28,7 @@ if version_info >= (2, 6, 0):
+     _gbbt = swig_import_helper()
+     del swig_import_helper
+ else:
+-    import _gbbt
++    from . import _gbbt
+ del version_info
+ try:
+     _swig_property = property
+diff --git a/plugin.py b/plugin.py
+index a0e2063..8799d81 100644
+--- a/plugin.py
++++ b/plugin.py
+@@ -1,6 +1,6 @@
+ from Plugins.Plugin import PluginDescriptor
+-from bt_setup import BluetoothSetupScreen
+-from bt import pybluetooth_instance
++from .bt_setup import BluetoothSetupScreen
++from .bt import pybluetooth_instance
+ from Components.config import config, ConfigBoolean
+ from enigma import eActionMap, eDVBVolumecontrol
+ from Tools.HardwareInfo import HardwareInfo
