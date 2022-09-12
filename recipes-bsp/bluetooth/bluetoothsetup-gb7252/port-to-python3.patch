@@ -16,7 +16,7 @@ index b27a7eb..703bf2b 100644
  OTA_ERROR_SERVICE_DISCOVERY = 0
  OTA_BATTERY_LEVEL = 1
 diff --git a/bt.py b/bt.py
-index e89913c..0aa1bea 100644
+index e89913c..ee00b2d 100644
 --- a/bt.py
 +++ b/bt.py
 @@ -30,12 +30,12 @@ from enigma import eDVBVolumecontrol
@@ -55,6 +55,20 @@ index e89913c..0aa1bea 100644
  
  	def isAudioDeviceConnected(self):
  		return bool(self.getAudioDeviceConnected())
+@@ -404,10 +404,10 @@ class BTBatteryLevel:
+ 	def __init__(self):
+ 		self.batteryLevelTimer = eTimer()
+ 		self.batteryLevelTimer.callback.append(self.updateBatteryLevel)
+- 		self.batteryUpdateInterval = 60*60*12*1000 # every 12 hours
++		self.batteryUpdateInterval = 60*60*12*1000 # every 12 hours
+ 		self.batteryCheckRetryTime = 15*1000 # maximum time to waiting voice stop
+- 		self.lastMsgMday = -1
+- 		self.batteryLevel = 0
++		self.lastMsgMday = -1
++		self.batteryLevel = 0
+ 
+ 	def startBatteryTimer(self):
+ 		self.lastMsgMday = -1
 @@ -456,7 +456,7 @@ class BTOTAProcess:
  		self.rcuAppVersion = None
  
