@@ -9,7 +9,7 @@ MTD_ROOTFS = "mmcblk0p16"
 KERNEL_FILE = "kernel.bin"
 ROOTFS_FILE = "rootfs.tar.bz2"
 
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "\
     gigablue-dvb-modules-${MACHINE} \
     gigablue-loadmodules-${MACHINE} \ 
     gigablue-opengl-${MACHINE} \
@@ -57,7 +57,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-zd1211rw \
 	"
 	
-MACHINE_FEATURES += " hisil alsa usbhost wlan switchoff osdposition hdmicec"
+MACHINE_FEATURES += " alsa usbhost wlan switchoff osdposition hdmicec"
 
 IMAGE_CLASSES  += "gigablue-emmc_image"
 IMAGE_FSTYPES += "gigablueemmc"
