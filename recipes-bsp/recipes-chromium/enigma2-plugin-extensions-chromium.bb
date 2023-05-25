@@ -11,7 +11,7 @@ PR = "20180628_r0"
 SRC_URI = "http://source.mynonpublic.com/gigablue/chromium/e2plugin-chromium-gigablue_${PR}.tar.gz"
 SRC_URI_append =+ " \
            file://port-to-python3-gigablue.patch"
-           
+
 COMPATIBLE_MACHINE = "^(gbquad4k|gbue4k)$"
 
 DEPENDS = "chromium-browser"
@@ -19,7 +19,7 @@ RDEPENDS_${PN} = "chromium-browser"
 
 do_install_append() {
     install -d ${D}/usr/lib/enigma2/python/Plugins/Extensions/Chromium
-    cp -aRf ${WORKDIR}/e2plugin/* ${D}/usr/lib/enigma2/python/Plugins/Extensions/Chromium/
+    cp -aRf --no-preserve=ownership ${WORKDIR}/e2plugin/* ${D}/usr/lib/enigma2/python/Plugins/Extensions/Chromium/
 }
 
 do_package_qa() {

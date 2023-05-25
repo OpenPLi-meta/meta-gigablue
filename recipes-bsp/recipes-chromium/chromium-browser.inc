@@ -18,7 +18,7 @@ RDEPENDS_${PN} += "gb-v3ddriver-gb7252"
 
 do_install() {
 	install -d ${D}/usr/local/chromium
-	cp -afR ${WORKDIR}/chromium/* ${D}/usr/local/chromium/
+	cp -afR --no-preserve=ownership ${WORKDIR}/chromium/* ${D}/usr/local/chromium/
 	chmod 755 ${D}/usr/local/chromium/run.sh
 	chmod 755 ${D}/usr/local/chromium/bin/browser_shell
 	chmod 755 ${D}/usr/local/chromium/bin/chrome
