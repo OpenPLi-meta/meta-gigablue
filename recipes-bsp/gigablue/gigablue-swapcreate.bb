@@ -9,7 +9,7 @@ PR = "r1"
 
 SRC_URI="file://createswap.sh"
 
-RRECOMMENDS_${PN} = "util-linux-blkid"
+RRECOMMENDS:${PN} = "util-linux-blkid"
 
 do_install() {
     install -d ${D}${sysconfdir}/init.d

@@ -1,6 +1,6 @@
 inherit image_types
 
-IMAGE_TYPEDEP_gigablueemmc = "ext4"
+IMAGE_TYPEDEP:gigablueemmc = "ext4"
 
 do_image_gigablueemmc[depends] = " \
     parted-native:do_populate_sysroot \
@@ -10,6 +10,6 @@ do_image_gigablueemmc[depends] = " \
     gigablue-buildimage-native:do_populate_sysroot \
     "
 
-IMAGE_CMD_gigablueemmc () {
+IMAGE_CMD:gigablueemmc () {
 
 }

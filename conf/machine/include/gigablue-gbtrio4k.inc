@@ -79,11 +79,11 @@ PREFERRED_RPROVIDER_showiframe = "gigablue-showiframe-${MACHINE}"
 PREFERRED_RPROVIDER_aio-grab = "gigablue-grab-${MACHINE}"
 PREFERRED_PROVIDER_virtual/gstreamer1.0-dvbmediasink ?= "gstreamer1.0-plugin-dvbmediasink"
 
-require conf/machine/include/tune-cortexa15.inc
+require conf/machine/include/arm/armv7a/tune-cortexa15.inc
 
 # Qt
-PACKAGECONFIG_GL_pn-qtbase = "gles2 eglfs linuxfb"
-PACKAGECONFIG_FB_pn-qtbase = " "
+PACKAGECONFIG_GL:pn-qtbase = "gles2 eglfs linuxfb"
+PACKAGECONFIG_FB:pn-qtbase = " "
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	ffmpeg \
@@ -97,7 +97,7 @@ IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 
-IMAGE_CMD_gigablueemmc_append = "\
+IMAGE_CMD:gigablueemmc:append = "\
     mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1; \
@@ -132,6 +132,6 @@ IMAGE_CMD_gigablueemmc_append = "\
     rm -Rf ${DEPLOY_DIR_IMAGE}/userdata; \
     "
 
-IMAGE_CMD_prepend = " \
+IMAGE_CMD:prepend = " \
     rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
     "

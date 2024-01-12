@@ -4,13 +4,13 @@ LICENSE = "CLOSED"
 # require conf/license/license-close.inc
 
 DEPENDS = "python3-native"
-RDEPENDS_${PN} = "libcurl libsqlite3 libssl libcrypto libudev libusb-compat libudev1-compat libcrypto-compat"
-RDEPENDS_${PN} += "gb-bluetooth-util"
+RDEPENDS:${PN} = "libcurl libsqlite3 libssl libcrypto libudev libusb-compat libudev1-compat libcrypto-compat"
+RDEPENDS:${PN} += "gb-bluetooth-util"
 
 PROVIDES += "enigma2-plugin-systemplugins-bluetoothsetup"
-RPROVIDES_${PN} += "enigma2-plugin-systemplugins-bluetoothsetup"
+RPROVIDES:${PN} += "enigma2-plugin-systemplugins-bluetoothsetup"
 
-RREPLACES_${PN} = "enigma2-plugin-systemplugins-bluetoothsetup"
+RREPLACES:${PN} = "enigma2-plugin-systemplugins-bluetoothsetup"
 
 PR="${SRCDATE}.${SRCDATE_PR}"
 
@@ -33,11 +33,11 @@ do_install() {
 do_package_qa() {
 }
 
-FILES_${PN} = "${BLUETOOTH_PLUGIN_PATH}"
+FILES:${PN} = "${BLUETOOTH_PLUGIN_PATH}"
 
 do_populate_sysroot[noexec] = "1"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-INSANE_SKIP_${PN} = "already-stripped"
+INSANE_SKIP:${PN} = "already-stripped"
 

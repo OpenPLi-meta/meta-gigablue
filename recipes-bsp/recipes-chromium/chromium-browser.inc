@@ -13,8 +13,8 @@ SRC_URI = "http://source.mynonpublic.com/gigablue/chromium/chromium-gigablue-gb7
 PREFERRED_VERSION_nss = "3.17.3"
 
 DEPENDS = "nss"
-RDEPENDS_${PN} = "nspr nss libxslt libcurl libudev"
-RDEPENDS_${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS:${PN} = "nspr nss libxslt libcurl libudev"
+RDEPENDS:${PN} += "gb-v3ddriver-gb7252"
 
 do_install() {
 	install -d ${D}/usr/local/chromium
@@ -32,11 +32,11 @@ do_package_qa() {
 }
 
 PROVIDES += "virtual/chromium-browser"
-RPROVIDES_${PN} += "virtual/chromium-browser"
+RPROVIDES:${PN} += "virtual/chromium-browser"
 PROVIDES += "chromium-browser"
-RPROVIDES_${PN} += "chromium-browser"
+RPROVIDES:${PN} += "chromium-browser"
 
-FILES_${PN} = "/"
+FILES:${PN} = "/"
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

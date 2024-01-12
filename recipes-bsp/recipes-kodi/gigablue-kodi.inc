@@ -17,6 +17,6 @@ do_install(){
 }
 
 PACKAGES = "${PN}"
-FILES_${PN} = "${includedir} ${libdir}"
+FILES:${PN} = "${includedir} ${libdir}"
 
-INSANE_SKIP_${PN} = "staticdev"
+INSANE_SKIP:${PN} = "staticdev"

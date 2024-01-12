@@ -19,15 +19,15 @@ SRC_URI += " \
     file://dumpait \
     "
 
-RDEPENDS_${PN}  = "qtwebkit virtual/libgles2"
-RDEPENDS_${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS:${PN}  = "qtwebkit virtual/libgles2"
+RDEPENDS:${PN} += "gb-v3ddriver-gb7252"
 
 S = "${WORKDIR}"
 
 PLUGINPATH = "${libdir}/enigma2/python/Plugins/Extensions/HbbTV"
 
-FILES_${PN} = "${bindir} ${libdir}/mozilla/plugins/libhbbtvbrowserplugin.so ${PLUGINPATH}/*.py ${PLUGINPATH}/dumpait"
-FILES_${PN}-src = "${PLUGINPATH}/*.py"
+FILES:${PN} = "${bindir} ${libdir}/mozilla/plugins/libhbbtvbrowserplugin.so ${PLUGINPATH}/*.py ${PLUGINPATH}/dumpait"
+FILES:${PN}-src = "${PLUGINPATH}/*.py"
 
 do_install(){
     install -d ${D}${PLUGINPATH}
@@ -41,11 +41,11 @@ do_install(){
 }
 
 # Just a quick hack to "compile" the python parts.
-do_install_append() {
+do_install:append() {
     python3 -O -m compileall ${D}
 }
 
-pkg_postinst_ontarget_${PN}(){
+pkg_postinst_ontarget:${PN}(){
 #!/bin/sh
 ln -sf /usr/share/fonts /usr/lib/fonts
 
@@ -61,4 +61,4 @@ exit 0
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
-INSANE_SKIP_${PN} += "already-stripped file-rdeps ldflags"
+INSANE_SKIP:${PN} += "already-stripped file-rdeps ldflags"

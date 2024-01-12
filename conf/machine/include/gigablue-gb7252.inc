@@ -12,14 +12,14 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-gigablue"
 PREFERRED_PROVIDER_virtual/egl = "gb-v3ddriver-gb7252"
 PREFERRED_PROVIDER_virtual/libgles2 = "gb-v3ddriver-gb7252"
 
-PACKAGECONFIG_GL_pn-qtbase = " gles2 eglfs linuxfb"
+PACKAGECONFIG_GL:pn-qtbase = " gles2 eglfs linuxfb"
 
 # xbmc/kodi support
-DEPENDS_append_pn-kodi = " gigablue-kodi-${MACHINE}"
+DEPENDS:append:pn-kodi = " gigablue-kodi-${MACHINE}"
 
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
-IMAGE_CMD_tar_prepend = "\
+IMAGE_CMD:tar:prepend = "\
     rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
     mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
     cp ${DEPLOY_DIR_IMAGE}/${MACHINE}_boot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/boot.bin; \
@@ -50,6 +50,10 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = " \
 
 EXTRA_IMAGEDEPENDS = "\
     gigablue-initrd-cfe-${MACHINE} \
+    "
+
+IMAGE_INSTALL:append = "\
+    bluetoothsetup-gb7252 \
     "
 
 OPTIONAL_BSP_ENIGMA2_PACKAGES = "\

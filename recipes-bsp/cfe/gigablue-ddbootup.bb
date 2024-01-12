@@ -23,4 +23,4 @@ do_install() {
     ln -sf ../init.d/ddbootup ${D}${sysconfdir}/rcS.d/S66ddbootup
 }
 
-FILES_${PN} += "${sysconfdir}"
+FILES:${PN} += "${sysconfdir}"

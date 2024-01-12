@@ -63,9 +63,9 @@ KERNEL_OBJECT_SUFFIX = "ko"
 KERNEL_IMAGEDEST = "tmp"
 KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
-FILES_${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/zImage /${KERNEL_IMAGEDEST}/gbfindkerneldevice.py"
+FILES:${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/zImage /${KERNEL_IMAGEDEST}/gbfindkerneldevice.py"
 
-kernel_do_install_append() {
+kernel_do_install:append() {
         install -d ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${WORKDIR}/gbfindkerneldevice.py ${D}/${KERNEL_IMAGEDEST}
@@ -79,7 +79,7 @@ kernel_do_compile() {
         fi
 }
 
-pkg_postinst_kernel-image () {
+pkg_postinst:kernel-image () {
     if [ "x$D" == "x" ]; then
         if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
             ${PYTHON_PN} /${KERNEL_IMAGEDEST}/gbfindkerneldevice.py
@@ -90,10 +90,10 @@ pkg_postinst_kernel-image () {
     true
 }
 
-pkg_postrm_kernel-image () {
+pkg_postrm:kernel-image () {
 }
 
-#FILESEXTRAPATHS_prepend := "${THISDIR}/linux-gigablue-${KV}:"
+#FILESEXTRAPATHS:prepend := "${THISDIR}/linux-gigablue-${KV}:"
 
 do_rm_work() {
 }
