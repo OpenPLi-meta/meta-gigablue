@@ -21,7 +21,6 @@ SRC_URI += "http://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-20
     file://0002-linux_4_1_1_9_dvbs2x.patch \
     file://0002-linux_dvb_adapter.patch \
     file://0002-linux_rpmb_not_alloc.patch \
-    file://kernel-add-support-for-gcc6.patch \
     file://0001-regmap-add-regmap_write_bits.patch \
     file://0003-Add-support-for-dvb-usb-stick-Hauppauge-WinTV-soloHD.patch \
     file://0004-af9035-add-USB-ID-07ca-0337-AVerMedia-HD-Volar-A867.patch \
@@ -46,9 +45,6 @@ SRC_URI += "http://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-20
     file://0001-STV-Add-SNR-Signal-report-parameters.patch \
     file://blindscan2.patch \
     file://0001-stv090x-optimized-TS-sync-control.patch \
-    file://kernel-add-support-for-gcc7.patch \
-    file://kernel-add-support-for-gcc8.patch \
-    file://kernel-add-support-for-gcc9.patch \
     file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
     file://0003-uaccess-dont-mark-register-as-const.patch \
     file://make-yyloc-declaration-extern.patch \
