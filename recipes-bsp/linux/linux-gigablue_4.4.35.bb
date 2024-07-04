@@ -37,6 +37,7 @@ SRC_URI += "http://source.mynonpublic.com/gigablue/mv200/gigablue-linux-${PV}-${
     file://wifi-linux_4.4.183.patch \
     file://fix-dvbcore-buffer-read.patch \
     file://make-yyloc-declaration-extern.patch \
+    file://fix-build-with-binutils-2.41.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"
