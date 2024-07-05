@@ -19,7 +19,7 @@ SRC_URI += " \
     file://dumpait \
     "
 
-RDEPENDS:${PN}  = "qtwebkit virtual/libgles2"
+RDEPENDS:${PN}  = "qtwebkit virtual-libgles2"
 RDEPENDS:${PN} += "gb-v3ddriver-gb7252"
 
 S = "${WORKDIR}"

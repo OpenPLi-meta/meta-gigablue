@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 PR = "${SRCDATE}"
 
 PROVIDES = "virtual/libgles1 virtual/libgles2 virtual/egl"
-RPROVIDES:${PN} = "virtual/libgles1 virtual/libgles2 virtual/egl libEGL.so libGLESv2.so libmali.so"
+RPROVIDES:${PN} = "virtual-libgles1 virtual-libgles2 virtual-egl libEGL.so libGLESv2.so libmali.so"
 
 SRC_URI = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-opengl-${SRCDATE}.tar.gz"
 
