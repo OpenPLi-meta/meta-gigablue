@@ -11,6 +11,7 @@ PREFERRED_VERSION_linux-gigablue = "4.1.20"
 PREFERRED_PROVIDER_virtual/kernel = "linux-gigablue"
 PREFERRED_PROVIDER_virtual/egl = "gb-v3ddriver-gb7252"
 PREFERRED_PROVIDER_virtual/libgles2 = "gb-v3ddriver-gb7252"
+PREFERRED_PROVIDER_virtual/kodi = "stb-kodi-gb7252"
 
 PACKAGECONFIG_GL:pn-qtbase = " gles2 eglfs linuxfb"
 

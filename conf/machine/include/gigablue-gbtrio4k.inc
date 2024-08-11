@@ -74,6 +74,7 @@ PREFERRED_PROVIDER_virtual/egl = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles1 = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles2 = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs = "gigablue-blindscan-${MACHINE}"
+PREFERRED_PROVIDER_virtual/kodi = "stb-kodi-gbmv200"
 
 PREFERRED_RPROVIDER_showiframe = "gigablue-showiframe-${MACHINE}"
 PREFERRED_RPROVIDER_aio-grab = "gigablue-grab-${MACHINE}"
