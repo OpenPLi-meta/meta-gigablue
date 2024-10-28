@@ -4,7 +4,7 @@ LICENSE = "CLOSED"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-SRC_URI = "http://source.mynonpublic.com/gigablue/v3ddriver/xbmc-support_gb7252_${GLPR}.tar.gz"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/xbmc-support_gb7252_${GLPR}.tar.gz"
 
 S = "${WORKDIR}/xbmc-support"
 

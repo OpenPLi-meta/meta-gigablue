@@ -10,7 +10,7 @@ DEPENDS = "gb-v3ddriver-headers"
 PV = "${SRCDATE}"
 PR = "r2"
 
-SRC_URI = "http://source.mynonpublic.com/gigablue/v3ddriver/gb7252-v3ddriver-${SRCDATE}.zip"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/gb7252-v3ddriver-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
