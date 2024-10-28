@@ -15,7 +15,7 @@ RREPLACES:${PN} = "enigma2-plugin-systemplugins-bluetoothsetup"
 PR="${SRCDATE}.${SRCDATE_PR}"
 
 SRC_URI = " \
-     http://source.mynonpublic.com/gigablue/bluetooth/enigma2-plugin-bluetoothsetup-gb7252-${PR}.tar.gz \
+     http://downloads.openpli.org/archive/gigablue/enigma2-plugin-bluetoothsetup-gb7252-${PR}.tar.gz \
      file://port-to-python3.patch \
 "
 

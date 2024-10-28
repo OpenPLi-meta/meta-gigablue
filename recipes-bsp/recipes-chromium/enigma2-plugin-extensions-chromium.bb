@@ -8,7 +8,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 PV = "1.0"
 PR = "20180628_r0"
-SRC_URI = "http://source.mynonpublic.com/gigablue/chromium/e2plugin-chromium-gigablue_${PR}.tar.gz"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/e2plugin-chromium-gigablue_${PR}.tar.gz"
 SRC_URI:append = " \
            file://port-to-python3-gigablue.patch"
 

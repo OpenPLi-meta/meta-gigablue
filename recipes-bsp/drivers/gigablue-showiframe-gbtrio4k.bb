@@ -15,7 +15,7 @@ RPROVIDES:${PN}  = "showiframe"
 RREPLACES:${PN}  = "showiframe"
 RCONFLICTS:${PN} = "showiframe"
 
-SRC_URI = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-showiframe-${SRCDATE}.tar.gz"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE}-showiframe-${SRCDATE}.tar.gz"
 
 S = "${WORKDIR}"
 

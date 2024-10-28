@@ -12,7 +12,7 @@ INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
 SRC_URI = " \
-    http://source.mynonpublic.com/gigablue/drivers/platform-util-gb7252-${KV}-${SRCDATE}.zip \
+    http://downloads.openpli.org/archive/gigablue/platform-util-gb7252-${KV}-${SRCDATE}.zip \
     file://${INITSCRIPT_NAME}.sysvinit \
 "
 

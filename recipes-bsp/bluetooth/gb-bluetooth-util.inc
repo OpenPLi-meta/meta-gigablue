@@ -8,7 +8,7 @@ RPROVIDES:${PN} += "gb-bluetooth-util"
 PR="${SRCDATE}.${SRCDATE_PR}"
 
 SRC_URI = " \
-    http://source.mynonpublic.com/gigablue/bluetooth/gb-bluetooth-util-gb7252-${PR}.tar.gz \
+    http://downloads.openpli.org/archive/gigablue/gb-bluetooth-util-gb7252-${PR}.tar.gz \
 "
 
 S="${WORKDIR}/gb-bluetooth-util-gb7252"
