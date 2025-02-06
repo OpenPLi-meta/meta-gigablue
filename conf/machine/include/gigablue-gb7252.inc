@@ -1,6 +1,6 @@
 require conf/machine/include/gigablue-arm.inc
 
-MACHINE_KERNEL_PR = "r7"
+MACHINE_KERNEL_PR = "${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'r8' , 'r7', d)}"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
     gst-plugin-dvbmediasink \
@@ -39,13 +39,13 @@ IMAGE_CMD:tar:prepend = "\
 "
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = " \
-    gigablue-platform-util-gb7252 \
+    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gigablue-platform-util-gb7252pro' , 'gigablue-platform-util-gb7252', d)}\
     gigablue-ddbootup \
     gigablue-swapcreate \
 "
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = " \
-    gb-v3ddriver-gb7252 \
+    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gb-v3ddriver-gbquad4kpro' , 'gb-v3ddriver-gb7252', d)} \
     gb-qteglfs-platform \
     "
 
