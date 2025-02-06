@@ -8,14 +8,14 @@ PACKAGE_ARCH := "${MACHINE}"
 require conf/license/license-gplv2.inc
 
 PR = "r3"
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 
 do_install() {
     install -d ${D}/usr/share
-    install -m 0644 ${WORKDIR}/gpt.bin ${D}/usr/share/gpt.bin
+    install -m 0644 ${S}/gpt.bin ${D}/usr/share/gpt.bin
 }
 
-FILES_${PN} = "/usr/share"
+FILES:${PN} = "/usr/share"
 
 inherit deploy
 do_deploy() {
@@ -33,8 +33,9 @@ do_deploy() {
     fi
 }
 
-SRC_URI = "http://downloads.openpli.org/archive/gigablue/initrd_${MACHINE}_${SRCDATE}.zip"
+SRC_URI = "https://source.mynonpublic.com/gigablue/initrd/initrd_${MACHINE}_${SRCDATE}.zip"
 
 S = "${WORKDIR}"
+UNPACKDIR = "${S}"
 
-addtask deploy before do_build after do_install
+addtask deploy before do_package after do_install

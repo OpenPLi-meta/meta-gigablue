@@ -2,26 +2,34 @@ SUMMARY = "Linux kernel for ${MACHINE}"
 LICENSE = "GPLv2"
 SECTION = "kernel"
 
-COMPATIBLE_MACHINE = "^(gbquad4k|gbue4k)$"
+COMPATIBLE_MACHINE = "^(gbquad4k|gbue4k|gbquad4kpro)$"
 
 MODULE = "linux-4.1.20"
 
 inherit kernel machine_kernel_pr
 
-SRC_URI[md5sum] = "6036c5d722071e72d5d66dbf7ee74992"
-SRC_URI[sha256sum] = "eff7eecf55dd75ecb44bd8b8fe16f588d19c1eac92125eaed2b6834348d12def"
 
+SRC_DATE = "20180206"
+SRC_DATE_gbquad4kpro = "20241007"
+
+SRC_NAME = "legacy"
+SRC_NAME_gbquad4kpro = "pro"
+
+SRC_URI[legacy.md5sum] = "6036c5d722071e72d5d66dbf7ee74992"
+SRC_URI[legacy.sha256sum] = "eff7eecf55dd75ecb44bd8b8fe16f588d19c1eac92125eaed2b6834348d12def"
+SRC_URI[pro.md5sum]= "50a405104241bf0586c4be317dacd146"
+SRC_URI[pro.sha256sum] = "084d1e324317da82fe34fbdff148fc4b7306bc649b38a59023fe478ca2ff0a22"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-20180206.tar.gz \
-    file://defconfig \
+SRC_URI += "https://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-${SRC_DATE}.tar.gz;name=${SRC_NAME} \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'initrd', 'file://defconfig_initrd' , 'file://defconfig', d)} \
+    file://initramfs-subdirboot.cpio.gz;unpack=0 \
     file://gbfindkerneldevice.py \
     file://0002-linux_dvb-core.patch \
     file://0002-bcmgenet-recovery-fix.patch \
     file://0002-linux_4_1_1_9_dvbs2x.patch \
     file://0002-linux_dvb_adapter.patch \
     file://0002-linux_rpmb_not_alloc.patch \
-    file://kernel-add-support-for-gcc6.patch \
     file://0001-regmap-add-regmap_write_bits.patch \
     file://0003-Add-support-for-dvb-usb-stick-Hauppauge-WinTV-soloHD.patch \
     file://0004-af9035-add-USB-ID-07ca-0337-AVerMedia-HD-Volar-A867.patch \
@@ -46,12 +54,17 @@ SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-2
     file://0001-STV-Add-SNR-Signal-report-parameters.patch \
     file://blindscan2.patch \
     file://0001-stv090x-optimized-TS-sync-control.patch \
+    file://kernel-add-support-for-gcc6.patch \
     file://kernel-add-support-for-gcc7.patch \
     file://kernel-add-support-for-gcc8.patch \
     file://kernel-add-support-for-gcc9.patch \
     file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
     file://0003-uaccess-dont-mark-register-as-const.patch \
     file://make-yyloc-declaration-extern.patch \
+    file://add-partition-specific-uevent-callbacks-for-partition-info.patch \
+    file://move-default-dialect-to-SMB3.patch \
+    file://linux3.4-ARM-8933-1-replace-Sun-Solaris-style-flag-on-section.patch \
+    file://fix-build-with-binutils-2.41.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"
@@ -65,7 +78,14 @@ KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
 FILES_${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/zImage /${KERNEL_IMAGEDEST}/gbfindkerneldevice.py"
 
-kernel_do_install_append() {
+kernel_do_configure:prepend() {
+        install -d ${B}/usr
+        install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
+        if [ -e ${WORKDIR}/defconfig_initrd ]; then
+            mv ${WORKDIR}/defconfig_initrd ${S}/defconfig
+        fi
+}
+kernel_do_install:append() {
         install -d ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${WORKDIR}/gbfindkerneldevice.py ${D}/${KERNEL_IMAGEDEST}
@@ -93,7 +113,7 @@ pkg_postinst_kernel-image () {
 pkg_postrm_kernel-image () {
 }
 
-#FILESEXTRAPATHS_prepend := "${THISDIR}/linux-gigablue-${KV}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/linux-gigablue-${KV}:"
 
 do_rm_work() {
 }
