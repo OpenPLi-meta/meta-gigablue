@@ -1,6 +1,6 @@
 require gb-bluetooth-util.inc
 
-COMPATIBLE_MACHINE = "gbquad4k|gbue4k"
+COMPATIBLE_MACHINE = "gbquad4kpro|gbquad4k|gbue4k"
 
 SRCDATE = "20190502"
 SRCDATE_PR = "r0"

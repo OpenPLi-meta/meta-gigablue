@@ -2,7 +2,7 @@ SUMMARY = "Linux kernel for ${MACHINE}"
 LICENSE = "GPL-2.0-only"
 SECTION = "kernel"
 
-COMPATIBLE_MACHINE = "^(gbquad4k|gbue4k)$"
+COMPATIBLE_MACHINE = "^(gbquad4kpro|gbquad4k|gbue4k)$"
 
 MODULE = "linux-4.1.20"
 

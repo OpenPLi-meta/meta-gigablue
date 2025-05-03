@@ -12,7 +12,7 @@ SRC_URI = "http://downloads.openpli.org/archive/gigablue/e2plugin-chromium-gigab
 SRC_URI:append = " \
            file://port-to-python3-gigablue.patch"
 
-COMPATIBLE_MACHINE = "^(gbquad4k|gbue4k)$"
+COMPATIBLE_MACHINE = "^(gbquad4kpro|gbquad4k|gbue4k)$"
 
 DEPENDS = "chromium-browser"
 RDEPENDS:${PN} = "chromium-browser"
