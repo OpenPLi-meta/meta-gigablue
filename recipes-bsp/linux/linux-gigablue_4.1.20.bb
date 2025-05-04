@@ -10,15 +10,16 @@ inherit kernel machine_kernel_pr
 
 
 SRC_DATE = "20180206"
-SRC_DATE_gbquad4kpro = "20241007"
+SRC_DATE_gbquad4kpro = "20250410"
 
 SRC_NAME = "legacy"
 SRC_NAME_gbquad4kpro = "pro"
 
 SRC_URI[legacy.md5sum] = "6036c5d722071e72d5d66dbf7ee74992"
 SRC_URI[legacy.sha256sum] = "eff7eecf55dd75ecb44bd8b8fe16f588d19c1eac92125eaed2b6834348d12def"
-SRC_URI[pro.md5sum]= "50a405104241bf0586c4be317dacd146"
-SRC_URI[pro.sha256sum] = "084d1e324317da82fe34fbdff148fc4b7306bc649b38a59023fe478ca2ff0a22"
+SRC_URI[pro.md5sum] = "7854cbc1984e9723c7d46d6923de9295"
+SRC_URI[pro.sha256sum] = "6a97857446c41b94de5a5fc618afa68a493b7cc6f7f0bca14b880d95be7966ad"
+
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 SRC_URI += "https://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-${SRC_DATE}.tar.gz;name=${SRC_NAME} \
@@ -64,7 +65,6 @@ SRC_URI += "https://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-$
     file://add-partition-specific-uevent-callbacks-for-partition-info.patch \
     file://move-default-dialect-to-SMB3.patch \
     file://linux3.4-ARM-8933-1-replace-Sun-Solaris-style-flag-on-section.patch \
-    file://fix-build-with-binutils-2.41.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"
@@ -82,7 +82,7 @@ kernel_do_configure:prepend() {
         install -d ${B}/usr
         install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
         if [ -e ${WORKDIR}/defconfig_initrd ]; then
-            mv ${WORKDIR}/defconfig_initrd ${S}/defconfig
+            mv ${WORKDIR}/defconfig_initrd ${WORKDIR}/defconfig
         fi
 }
 kernel_do_install:append() {

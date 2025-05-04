@@ -36,13 +36,13 @@ IMAGE_CMD_tar_prepend = "\
 "
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = " \
-    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gigablue-platform-util-gb7252pro' , 'gigablue-platform-util-gb7252', d)}\
+    gigablue-platform-util-${MACHINE_DRIVER} \
     gigablue-ddbootup \
     gigablue-swapcreate \
 "
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = " \
-    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gb-v3ddriver-gbquad4kpro' , 'gb-v3ddriver-gb7252', d)} \
+    gb-v3ddriver-${MACHINE_DRIVER} \
     gb-qteglfs-platform \
     "
 

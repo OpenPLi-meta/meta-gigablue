@@ -6,7 +6,7 @@ PACKAGE_ARCH := "${MACHINE}"
 # require conf/license/license-close.inc
 
 PV = "${KV}+${SRCDATE}"
-PR = "r5"
+PR = "r6"
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
@@ -16,7 +16,7 @@ SRC_URI = " \
     file://${INITSCRIPT_NAME}.sysvinit \
 "
 
-S="${WORKDIR}/platform"
+S = "${WORKDIR}/platform"
 
 do_install() {
     install -d ${D}/home/root/platform
@@ -30,7 +30,7 @@ do_package_qa() {
 do_populate_sysroot() {
 }
 
-FILES_${PN}="/home/root/platform /etc/init.d"
+FILES_${PN} = "/home/root/platform /etc/init.d"
 
 inherit update-rc.d
 

@@ -14,7 +14,7 @@ PREFERRED_VERSION_nss = "3.17.3"
 
 DEPENDS = "nss"
 RDEPENDS_${PN} = "nspr nss libxslt libcurl libudev"
-RDEPENDS_${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS_${PN} += "gb-v3ddriver-${MACHINE_DRIVER}"
 
 do_install() {
 	install -d ${D}/usr/local/chromium
