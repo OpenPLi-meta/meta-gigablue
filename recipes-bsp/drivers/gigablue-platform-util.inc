@@ -2,7 +2,7 @@ SUMMARY = "Platform Util drivers for ${MACHINE}"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
-PACKAGE_ARCH := "${MACHINE}"
+PACKAGE_ARCH = "${MACHINE}"
 # require conf/license/license-close.inc
 
 PV = "${KV}+${SRCDATE}"
@@ -16,7 +16,7 @@ SRC_URI = " \
     file://${INITSCRIPT_NAME}.sysvinit \
 "
 
-S="${WORKDIR}/platform"
+S = "${WORKDIR}/platform"
 
 do_install() {
     install -d ${D}/home/root/platform
@@ -30,7 +30,7 @@ do_package_qa() {
 do_populate_sysroot() {
 }
 
-FILES:${PN}="/home/root/platform /etc/init.d"
+FILES:${PN} = "/home/root/platform /etc/init.d"
 
 inherit update-rc.d
 

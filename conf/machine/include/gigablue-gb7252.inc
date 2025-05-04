@@ -9,8 +9,6 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 
 PREFERRED_VERSION_linux-gigablue = "4.1.20"
 PREFERRED_PROVIDER_virtual/kernel = "linux-gigablue"
-PREFERRED_PROVIDER_virtual/egl = "gb-v3ddriver-gb7252"
-PREFERRED_PROVIDER_virtual/libgles2 = "gb-v3ddriver-gb7252"
 PREFERRED_PROVIDER_virtual/kodi = "stb-kodi-gb7252"
 
 PACKAGECONFIG_GL:pn-qtbase = " gles2 eglfs linuxfb"
@@ -38,14 +36,14 @@ IMAGE_CMD:tar:prepend = "\
     rm -Rf gigablue; \
 "
 
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS = " \
-    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gigablue-platform-util-gb7252pro' , 'gigablue-platform-util-gb7252', d)}\
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS += " \
+    gigablue-platform-util-${MACHINE_DRIVER} \
     gigablue-ddbootup \
     gigablue-swapcreate \
 "
 
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = " \
-    ${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'gb-v3ddriver-gbquad4kpro' , 'gb-v3ddriver-gb7252', d)} \
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += " \
+    gb-v3ddriver-${MACHINE_DRIVER} \
     gb-qteglfs-platform \
     "
 
