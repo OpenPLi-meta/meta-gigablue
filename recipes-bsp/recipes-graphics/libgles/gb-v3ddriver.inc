@@ -2,7 +2,7 @@ DESCRIPTION = "V3DDRIVER for ${MACHINE_DRIVER}"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
-PACKAGE_ARCH = "${MACHINE_ARCH}"
+PACKAGE_ARCH := "${MACHINE_ARCH}"
 
 PROVIDES = "virtual/libgles2 virtual/egl"
 DEPENDS = "gb-v3ddriver-headers patchelf-native"
