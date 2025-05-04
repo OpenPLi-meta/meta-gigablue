@@ -79,7 +79,7 @@ kernel_do_configure:prepend() {
         install -d ${B}/usr
         install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
         if [ -e ${WORKDIR}/defconfig_initrd ]; then
-            mv ${WORKDIR}/defconfig_initrd ${S}/defconfig
+            mv ${WORKDIR}/defconfig_initrd ${WORKDIR}/defconfig
         fi
 }
 kernel_do_install:append() {
