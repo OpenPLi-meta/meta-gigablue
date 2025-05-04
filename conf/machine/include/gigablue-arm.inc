@@ -13,6 +13,6 @@ PREFERRED_PROVIDER_virtual/blindscan-dvbc = "gigablue-blindscan-utils-arm"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs = "gigablue-blindscan-utils-arm"
 PREFERRED_PROVIDER_virtual/egl = "gb-v3ddriver-${MACHINE_DRIVER}"
 PREFERRED_PROVIDER_virtual/libgles2 = "gb-v3ddriver-${MACHINE_DRIVER}"
-PREFERRED_PROVIDER_virtual/chromium-browser = "chromium-browser-${MACHINE}"
+PREFERRED_PROVIDER_virtual/chromium-browser = "chromium-browser-gb7252"
 
 require conf/machine/include/soc-family.inc
