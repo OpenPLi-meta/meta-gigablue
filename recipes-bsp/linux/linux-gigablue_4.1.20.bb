@@ -78,14 +78,14 @@ KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
 FILES_${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/zImage /${KERNEL_IMAGEDEST}/gbfindkerneldevice.py"
 
-kernel_do_configure:prepend() {
+kernel_do_configure_prepend() {
         install -d ${B}/usr
         install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
         if [ -e ${WORKDIR}/defconfig_initrd ]; then
             mv ${WORKDIR}/defconfig_initrd ${WORKDIR}/defconfig
         fi
 }
-kernel_do_install:append() {
+kernel_do_install_append() {
         install -d ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}
         install -m 0755 ${WORKDIR}/gbfindkerneldevice.py ${D}/${KERNEL_IMAGEDEST}
