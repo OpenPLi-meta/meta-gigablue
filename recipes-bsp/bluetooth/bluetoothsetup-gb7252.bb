@@ -1,6 +1,6 @@
 require bluetoothsetup.inc
 
-COMPATIBLE_MACHINE = "gbquad4k|gbue4k"
+COMPATIBLE_MACHINE = "gbquad4k|gbue4k|gbquad4kpro"
 
 SRCDATE = "20190502"
 SRCDATE_PR = "r1"

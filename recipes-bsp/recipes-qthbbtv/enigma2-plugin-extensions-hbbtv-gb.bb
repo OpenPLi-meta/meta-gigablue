@@ -20,7 +20,7 @@ SRC_URI += " \
     "
 
 RDEPENDS_${PN}  = "qtwebkit virtual/libgles2"
-RDEPENDS_${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS_${PN} += "gb-v3ddriver-${MACHINE_DRIVER}"
 
 S = "${WORKDIR}"
 

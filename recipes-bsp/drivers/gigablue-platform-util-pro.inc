@@ -3,19 +3,17 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH := "${MACHINE}"
-# require conf/license/license-close.inc
 
 PV = "${KV}+${SRCDATE}"
-PR = "r6"
+PR = "r0"
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
 SRC_URI = " \
-    http://downloads.openpli.org/archive/gigablue/platform-util-gb7252-${KV}-${SRCDATE}.zip \
+    https://source.mynonpublic.com/gigablue/drivers/platform-util-gb7252pro-${KV}-${SRCDATE}.zip \
     file://${INITSCRIPT_NAME}.sysvinit \
 "
-
 S = "${WORKDIR}/platform"
 
 do_install() {
