@@ -23,6 +23,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-${SRC_DATE}.tar.gz;name=${SRC_NAME} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'initrd', 'file://defconfig_initrd' , 'file://defconfig', d)} \
+    file://initramfs-subdirboot.cpio.gz;unpack=0 \
     file://gbfindkerneldevice.py \
     file://0002-linux_dvb-core.patch \
     file://0002-bcmgenet-recovery-fix.patch \
