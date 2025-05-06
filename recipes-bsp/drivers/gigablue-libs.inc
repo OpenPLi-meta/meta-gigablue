@@ -15,7 +15,7 @@ inherit lib_package
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 SOLIBS = ".so"
-FILES_SOLIBSDEV = ""
+FILES:SOLIBSDEV = ""
 
 SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE}-hilib-${SRCDATE}.tar.gz"
 

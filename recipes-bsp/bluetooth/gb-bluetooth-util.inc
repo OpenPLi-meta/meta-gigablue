@@ -11,13 +11,13 @@ SRC_URI = " \
     http://downloads.openpli.org/archive/gigablue/gb-bluetooth-util-gb7252-${PR}.tar.gz \
 "
 
-S="${WORKDIR}/gb-bluetooth-util-gb7252"
+S = "${WORKDIR}/gb-bluetooth-util-gb7252"
 
 do_package_qa() {
 }
 
-PACKAGE_ARCH := "${MACHINE_ARCH}"
-FILES:${PN}="/"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+FILES:${PN} = "/"
 
 do_install() {
 	install -d ${D}/usr/local/bin

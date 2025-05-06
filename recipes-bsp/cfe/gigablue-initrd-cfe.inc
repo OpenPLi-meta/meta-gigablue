@@ -3,7 +3,7 @@ SECTION = "base"
 PRIORITY = "required"
 MAINTAINER = "Gigablue"
 LICENSE = "proprietary"
-PACKAGE_ARCH := "${MACHINE}"
+PACKAGE_ARCH = "${MACHINE}"
 
 require conf/license/license-gplv2.inc
 

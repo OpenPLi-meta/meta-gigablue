@@ -3,7 +3,7 @@ SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "CLOSED"
 # require conf/license/license-close.inc
-PACKAGE_ARCH := "${MACHINE_ARCH}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PV = "1.0"
 PR = "${SRCDATE}"
@@ -14,7 +14,7 @@ PREFERRED_VERSION_nss = "3.17.3"
 
 DEPENDS = "nss"
 RDEPENDS:${PN} = "nspr nss libxslt libcurl libudev"
-RDEPENDS:${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS:${PN} += "gb-v3ddriver-${MACHINE_DRIVER}"
 
 do_install() {
 	install -d ${D}/usr/local/chromium

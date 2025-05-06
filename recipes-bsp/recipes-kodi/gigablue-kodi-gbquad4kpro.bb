@@ -1,6 +1,6 @@
 require gigablue-kodi.inc
 
-COMPATIBLE_MACHINE = "^(gbquad4k)$"
+COMPATIBLE_MACHINE = "^(gbquad4kpro)$"
 
 PV = "1.0"
 

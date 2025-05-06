@@ -2,7 +2,7 @@ SUMMARY = "HbbTV for QT browser"
 SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "CLOSED"
-PACKAGE_ARCH := "${MACHINE_ARCH}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRCDATE = "20181019_r1"
 
@@ -20,7 +20,7 @@ SRC_URI += " \
     "
 
 RDEPENDS:${PN}  = "qtwebkit virtual-libgles2"
-RDEPENDS:${PN} += "gb-v3ddriver-gb7252"
+RDEPENDS:${PN} += "gb-v3ddriver-${MACHINE_DRIVER}"
 
 S = "${WORKDIR}"
 
