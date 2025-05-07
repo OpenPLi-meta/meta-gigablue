@@ -16,7 +16,8 @@ PR="${SRCDATE}.${SRCDATE_PR}"
 
 SRC_URI = " \
      http://downloads.openpli.org/archive/gigablue/enigma2-plugin-bluetoothsetup-gb7252-${PR}.tar.gz \
-     file://port-to-python3.patch \
+     file://0001-port-to-python3.patch \
+     file://0002-updated-to-python-3.12.patch \
 "
 
 S = "${WORKDIR}/plugin"
