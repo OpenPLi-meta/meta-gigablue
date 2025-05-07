@@ -8,7 +8,7 @@ SRCDATE = "20181019_r1"
 
 PR = "r1"
 
-inherit gitpkgv
+inherit gitpkgv python3native
 
 SRC_URI = "http://downloads.openpli.org/archive/gigablue/gb-hbbtv-qt-${SRCDATE}.zip"
 
@@ -26,7 +26,7 @@ S = "${WORKDIR}"
 
 PLUGINPATH = "${libdir}/enigma2/python/Plugins/Extensions/HbbTV"
 
-FILES:${PN} = "${bindir} ${libdir}/mozilla/plugins/libhbbtvbrowserplugin.so ${PLUGINPATH}/*.py ${PLUGINPATH}/dumpait"
+FILES:${PN} = "${bindir} ${libdir}/mozilla/plugins/libhbbtvbrowserplugin.so ${PLUGINPATH}/*.pyc ${PLUGINPATH}/dumpait"
 FILES:${PN}-src = "${PLUGINPATH}/*.py"
 
 do_install(){
