@@ -3,7 +3,7 @@ SECTION = "base"
 PRIORITY = "required"
 MAINTAINER = "Gigablue"
 LICENSE = "proprietary"
-PACKAGE_ARCH := "${MACHINE}"
+PACKAGE_ARCH = "${MACHINE}"
 
 require conf/license/license-gplv2.inc
 
@@ -33,7 +33,7 @@ do_deploy() {
     fi
 }
 
-SRC_URI = "https://source.mynonpublic.com/gigablue/initrd/initrd_${MACHINE}_${SRCDATE}.zip"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/initrd_${MACHINE}_${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 

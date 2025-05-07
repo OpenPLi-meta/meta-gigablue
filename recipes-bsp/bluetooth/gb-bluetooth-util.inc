@@ -16,7 +16,7 @@ S = "${WORKDIR}/gb-bluetooth-util-gb7252"
 do_package_qa() {
 }
 
-PACKAGE_ARCH := "${MACHINE_ARCH}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 FILES_${PN} = "/"
 
 do_install() {

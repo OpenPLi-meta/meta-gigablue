@@ -8,7 +8,6 @@ MODULE = "linux-4.1.20"
 
 inherit kernel machine_kernel_pr
 
-
 SRC_DATE = "20180206"
 SRC_DATE_gbquad4kpro = "20250410"
 
@@ -22,7 +21,7 @@ SRC_URI[pro.sha256sum] = "6a97857446c41b94de5a5fc618afa68a493b7cc6f7f0bca14b880d
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-SRC_URI += "https://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-${SRC_DATE}.tar.gz;name=${SRC_NAME} \
+SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-${SRC_DATE}.tar.gz;name=${SRC_NAME} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'initrd', 'file://defconfig_initrd' , 'file://defconfig', d)} \
     file://initramfs-subdirboot.cpio.gz;unpack=0 \
     file://gbfindkerneldevice.py \
@@ -62,9 +61,6 @@ SRC_URI += "https://source.mynonpublic.com/gigablue/linux/gigablue-linux-${PV}-$
     file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
     file://0003-uaccess-dont-mark-register-as-const.patch \
     file://make-yyloc-declaration-extern.patch \
-    file://add-partition-specific-uevent-callbacks-for-partition-info.patch \
-    file://move-default-dialect-to-SMB3.patch \
-    file://linux3.4-ARM-8933-1-replace-Sun-Solaris-style-flag-on-section.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"

@@ -2,7 +2,7 @@ DESCRIPTION = "V3DDRIVER for ${MACHINE_DRIVER}"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
-PACKAGE_ARCH := "${MACHINE_ARCH}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PROVIDES = "virtual/libgles2 virtual/egl"
 DEPENDS = "gb-v3ddriver-headers patchelf-native"
@@ -10,7 +10,7 @@ DEPENDS = "gb-v3ddriver-headers patchelf-native"
 PV = "${SRCDATE}"
 PR = "r2"
 
-SRC_URI = "https://source.mynonpublic.com/gigablue/v3ddriver/${MACHINE_DRIVER}-v3ddriver-${SRCDATE}.zip"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE_DRIVER}-v3ddriver-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
@@ -36,4 +36,5 @@ FILES_${PN}-dev = "/usr/include/*"
 
 RPROVIDES_${PN} = "virtual/libgles2 virtual/egl libnexus.so libnxclient.so libnxpl.so libv3ddriver.so libGLESv2.so libEGL.so"
 
+INSANE_SKIP = "32bit-time"
 INSANE_SKIP:${PN} += "already-stripped dev-so ldflags"

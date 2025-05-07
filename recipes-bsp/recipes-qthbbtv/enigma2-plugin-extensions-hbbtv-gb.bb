@@ -2,7 +2,7 @@ SUMMARY = "HbbTV for QT browser"
 SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "CLOSED"
-PACKAGE_ARCH := "${MACHINE_ARCH}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRCDATE = "20181019_r1"
 

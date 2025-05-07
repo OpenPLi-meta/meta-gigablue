@@ -5,3 +5,5 @@ require gb-v3ddriver.inc
 SRC_URI[md5sum] = "3ed7826e4b5634739e97074e2e753589"
 SRC_URI[sha256sum] = "613b9f12c9342bb3b79565ddf38c9372c977f7858a561ab07332d10f360c4eed"
 COMPATIBLE_MACHINE = "gbquad4kpro"
+
+INSANE_SKIP = "32bit-time"
