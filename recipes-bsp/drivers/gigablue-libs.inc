@@ -17,7 +17,7 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 SOLIBS = ".so"
 FILES:SOLIBSDEV = ""
 
-SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE}-hilib-${SRCDATE}.tar.gz"
+SRC_URI = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-hilib-${SRCDATE}.tar.gz"
 
 S = "${WORKDIR}/hilib"
 
