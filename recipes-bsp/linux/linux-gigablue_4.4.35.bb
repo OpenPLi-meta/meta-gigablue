@@ -3,17 +3,17 @@ SECTION = "kernel"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-COMPATIBLE_MACHINE = "^(gbtrio4k)$"
+COMPATIBLE_MACHINE = "^(gbtrio4k)$|^(gbtrio4kpro)$"
 
 KERNEL_RELEASE = "4.4.35"
-SRCDATE = "20181224"
+SRCDATE = "20220929"
 
 inherit kernel machine_kernel_pr
 
 MACHINE_KERNEL_PR_append = ".7"
 
-SRC_URI[md5sum] = "ad7eab17a5071a0d5f9ff44eb44e027d"
-SRC_URI[sha256sum] = "0654d5aa21c51eaea46f7203014afe60052ec0990a92b9e289e1ca8a2793907c"
+SRC_URI[md5sum] = "5724ab24328d5767209cea0ea5a123b4"
+SRC_URI[sha256sum] = "f1880fbf67022983b6ed231c54aaa00bc1f18b2db4a275e44ad0b7d4997436cf"
 
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
@@ -24,7 +24,7 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-image = "kernel-image-${KERNEL_VERSION}"
 
-SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-${SRCDATE}.tar.gz \
+SRC_URI += "http://define-sw.dyndns.tv/openatv/openpli/gigablue-linux-${PV}-${SRCDATE}.tar.gz \
     file://defconfig \
     file://0001-remote.patch \
     file://HauppaugeWinTV-dualHD.patch \
