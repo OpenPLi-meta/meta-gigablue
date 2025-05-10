@@ -18,7 +18,7 @@ SRC_URI  = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-hciattach-${SR
 
 S = "${WORKDIR}"
 
-FILES_${PN} += "${bindir} ${sysconfdir}"
+FILES:${PN} += "${bindir} ${sysconfdir}"
 do_install() {
     install -d ${D}/${bindir}
     install -m 0755 ${S}/hciattach_sprd ${D}/${bindir}
@@ -32,4 +32,4 @@ do_package_qa() {
 SRC_URI[md5sum] = "6b517b54e0abf3a769bef300e50bd00a"
 SRC_URI[sha256sum] = "e59dbe3c2f5fe06b044b3393cbc4810394a408ebaf7b4390520e72c3110a5c0c"
 
-INSANE_SKIP_${PN} += "ldflags already-stripped"
+INSANE_SKIP:${PN} += "ldflags already-stripped"

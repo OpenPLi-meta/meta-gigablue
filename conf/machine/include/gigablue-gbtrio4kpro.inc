@@ -100,7 +100,7 @@ IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 
-IMAGE_CMD_gigablueemmc_append = "\
+IMAGE_CMD_gigablueemmc:append = "\
     mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1; \
@@ -135,6 +135,6 @@ IMAGE_CMD_gigablueemmc_append = "\
     rm -Rf ${DEPLOY_DIR_IMAGE}/userdata; \
     "
 
-IMAGE_CMD_prepend = " \
+IMAGE_CMD:prepend = " \
     rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
     "
