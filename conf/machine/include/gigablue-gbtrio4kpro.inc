@@ -82,7 +82,7 @@ PREFERRED_RPROVIDER_showiframe = "gigablue-showiframe-${MACHINE}"
 PREFERRED_RPROVIDER_aio-grab = "gigablue-grab-${MACHINE}"
 PREFERRED_PROVIDER_virtual/gstreamer1.0-dvbmediasink ?= "gstreamer1.0-plugin-dvbmediasink"
 
-require conf/machine/include/tune-cortexa15.inc
+require conf/machine/include/arm/armv7a/tune-cortexa15.inc
 
 # Qt
 PACKAGECONFIG_GL_pn-qtbase = "gles2 eglfs linuxfb"
