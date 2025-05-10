@@ -35,6 +35,7 @@ do_install() {
 do_package_qa() {
 }
 
-FILES:${PN} += "${libdir}/*"
+FILES:${PN} = "${libdir}/*"
+FILES:${PN}-dev = ""
 
 INSANE_SKIP:${PN} = "already-stripped dev-so"
