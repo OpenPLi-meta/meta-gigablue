@@ -15,7 +15,7 @@ inherit lib_package
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 SOLIBS = ".so"
-FILES:SOLIBSDEV = ""
+FILES_SOLIBSDEV = ""
 
 SRC_URI = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-hilib-${SRCDATE}.tar.gz"
 
