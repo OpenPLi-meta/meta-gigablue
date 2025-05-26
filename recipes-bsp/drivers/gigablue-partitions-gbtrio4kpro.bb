@@ -11,7 +11,7 @@ PR = "${SRCDATE}"
 
 S = "${WORKDIR}/partitions"
 
-SRC_URI = "http://define-sw.dyndns.tv/openatv/openpli/${MACHINE}-partitions-${SRCDATE}.zip"
+SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE}-partitions-${SRCDATE}.zip"
 
 ALLOW_EMPTY_${PN} = "1"
 do_configure[nostamp] = "1"
