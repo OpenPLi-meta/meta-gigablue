@@ -39,7 +39,7 @@ index 26cd7c6..7b3eb65 100755
  class ChromiumOSSettings(ConfigListScreen, Screen):
  	skin=   """
 diff --git a/pipc.py b/pipc.py
-index 7eb25fd..9a59ada 100755
+index 7eb25fd..6ab5dce 100755
 --- a/pipc.py
 +++ b/pipc.py
 @@ -1,4 +1,6 @@
@@ -50,7 +50,51 @@ index 7eb25fd..9a59ada 100755
  
  _OPCODE  = {}
  _BUFSIZE = 4096
-@@ -72,7 +74,7 @@ class PServerThread(threading.Thread):
+@@ -6,7 +8,7 @@ _BUFSIZE = 4096
+ _SOCKETFILE = None
+ 
+ def SetHandler(opcode, handler):
+-    print "SetHandler"
++    print("SetHandler")
+     try:
+         _OPCODE[opcode][1] = handler
+     except:
+@@ -15,7 +17,7 @@ def SetHandler(opcode, handler):
+     return True
+ 
+ def GetHandler(opcode):
+-    print "GetHandler"
++    print("GetHandler")
+     for key, value in _OPCODE.items():
+         if value[0] == opcode:
+             cbcfg.DEBUG("recv socket: [%s]", key)
+@@ -24,7 +26,7 @@ def GetHandler(opcode):
+ 
+ class PServerHandlers:
+     def __init__(self, opcode_list, szcbh):
+-        print "PServerHandlers:__init__"
++        print("PServerHandlers:__init__")
+         global _OPCODE
+ 
+         opcode = 0
+@@ -51,14 +53,14 @@ class PServerHandlers:
+ 
+ class PServerThread(threading.Thread):
+     def __init__(self):
+-        print "PServerThread:__init__"
++        print("PServerThread:__init__")
+         threading.Thread.__init__(self)
+         self.mSock = None
+         self.mFlag = False
+         self.mTimeout = 5
+ 
+     def open(self, timeout = 5):
+-        print "PServerThread:open"
++        print("PServerThread:open")
+         addr = _SOCKETFILE
+         self.mTimeout = timeout
+         try:
+@@ -72,13 +74,13 @@ class PServerThread(threading.Thread):
              self.mSock.settimeout(self.mTimeout)
              self.mSock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
              self.mSock.bind(addr)
@@ -59,7 +103,31 @@ index 7eb25fd..9a59ada 100755
              cbcfg.ERROR("socket() fail : %s", err)
              return False
          return True
-@@ -106,7 +108,7 @@ class PServerThread(threading.Thread):
+ 
+     def parse_header(self, data):
+-        print "PServerThread:parse_header"
++        print("PServerThread:parse_header")
+         hlen = struct.calcsize('ibi')
+         packet = ""
+         opcode, result, length = struct.unpack('ibi', data[:hlen])
+@@ -87,14 +89,14 @@ class PServerThread(threading.Thread):
+         return [opcode, result, length, hlen]
+ 
+     def assamble(self, opcode, result, packet):
+-        print "PServerThread:assamble"
++        print("PServerThread:assamble")
+         if packet is None:
+             packet = ""
+         header = struct.pack('ibi', opcode, (result and 1 or 0), len(packet))
+         return header + packet
+ 
+     def process(self, conn, addr):
+-        print "PServerThread:process"
++        print("PServerThread:process")
+         read_packet = conn.recv(12)
+         read_header = self.parse_header(read_packet)
+ 
+@@ -106,13 +108,13 @@ class PServerThread(threading.Thread):
          result, send_packet = False,None
          try:
              result, send_packet = GetHandler(opcode)(result, recv_data)
@@ -68,6 +136,13 @@ index 7eb25fd..9a59ada 100755
              cbcfg.ERROR(err)
          send_data = self.assamble(opcode, result, send_packet)
          conn.sendall(send_data)
+ 
+     def run(self):
+-        print "PServerThread:run"
++        print("PServerThread:run")
+         if self.mSock is None:
+             raise
+ 
 @@ -127,7 +129,7 @@ class PServerThread(threading.Thread):
                      try:
                          conn, addr = self.mSock.accept()
@@ -77,8 +152,21 @@ index 7eb25fd..9a59ada 100755
                          cbcfg.ERROR("PServerThread: %s", err)
                      finally:
                          if conn is not None:
+@@ -137,10 +139,10 @@ class PServerThread(threading.Thread):
+ 
+     @staticmethod
+     def close(self=None):
+-        print "PServerThread:close"
++        print("PServerThread:close")
+         if _SOCKETFILE is not None and os.path.exists(_SOCKETFILE):
+             os.unlink(_SOCKETFILE)
+ 
+     def kill(self):
+-        print "PServerThread:kill"
++        print("PServerThread:kill")
+         self.mFlag = False
 diff --git a/plugin.py b/plugin.py
-index d5f2844..d6bafc1 100755
+index d5f2844..542641d 100755
 --- a/plugin.py
 +++ b/plugin.py
 @@ -5,16 +5,18 @@ from Components.config import config
@@ -104,7 +192,7 @@ index d5f2844..d6bafc1 100755
  
  _g_launcher_handler = None
  
-@@ -24,44 +26,44 @@ cbcfg.INIT(cbcfg._ERROR)
+@@ -24,47 +26,47 @@ cbcfg.INIT(cbcfg._ERROR)
  _g_locked = False
  
  def dvbapp_lock():
@@ -130,25 +218,26 @@ index d5f2844..d6bafc1 100755
 -class BrowserHandlers(PServerHandlers):                                                                                                                     
 +class BrowserHandlers(PServerHandlers):
  	def __init__(self):
- 		print "BrowserHandlers:__init__"
+-		print "BrowserHandlers:__init__"
 -		PServerHandlers.__init__(self, _OPCODES, '_CBH_')                                                                                                      
++		print("BrowserHandlers:__init__")
 +		PServerHandlers.__init__(self, _OPCODES, '_CBH_')
  		self._player_exit_cb()
 -                                                                                                                                                               
 +
  	def _player_exit_cb(self, ret=None):
- 		print "BrowserHandlers:_player_exit_cb"
+-		print "BrowserHandlers:_player_exit_cb"
 -		try:                                                                                                                                                   
 -			self.playerHandle.playlist.clear()                                                                                                                 
 -		except: pass                                                                                                                                           
++		print("BrowserHandlers:_player_exit_cb")
 +		try:
 +			self.playerHandle.playlist.clear()
 +		except: pass
  		self.playerHandle = None
  
 -	def _CBH_CONTROL_EXIT(self, result, packet):                                                                                                               
-+	def _CBH_CONTROL_EXIT(self, result, packet):
- 		print "BrowserHandlers:_CBH_CONTROL_EXIT"
+-		print "BrowserHandlers:_CBH_CONTROL_EXIT"
 -        	try:                                                                                                                                                   
 -			global _g_launcher_handler                                                                                                                         
 -			if _g_launcher_handler is not None:                                                                                                                
@@ -158,6 +247,8 @@ index d5f2844..d6bafc1 100755
 -            		cbcfg.ERROR("%s", err)                                                                                                                           
 -            		return (False, None)                                                                                                                               
 -        	return (True, None)
++	def _CBH_CONTROL_EXIT(self, result, packet):
++		print("BrowserHandlers:_CBH_CONTROL_EXIT")
 +		try:
 +			global _g_launcher_handler
 +			if _g_launcher_handler is not None:
@@ -169,7 +260,11 @@ index d5f2844..d6bafc1 100755
 +		return (True, None)
  
  	def _CBH_VIRTUAL_KEYBOARD(self, result, packet):
- 		print "BrowserHandlers:_CBH_VIRTUAL_KEYBOARD"
+-		print "BrowserHandlers:_CBH_VIRTUAL_KEYBOARD"
++		print("BrowserHandlers:_CBH_VIRTUAL_KEYBOARD")
+ 		default_data = packet
+ 		returned_data = None
+ 		try:
 @@ -74,45 +76,39 @@ class BrowserHandlers(PServerHandlers):
  				if returned_data is not None:
  					break
@@ -185,7 +280,8 @@ index d5f2844..d6bafc1 100755
  class BBrowserLauncher(Screen):
  	skin = """<screen name="BBrowserLauncher" position="0,0" size="0,0" backgroundColor="transparent" flags="wfNoBorder" title=" "></screen>"""
  	def __init__(self, session, mode=None, url="http://vuplus.com"):
- 		print "BBrowserLauncher:__init__"
+-		print "BBrowserLauncher:__init__"
++		print("BBrowserLauncher:__init__")
  		self.session = session
 -
  		Screen.__init__(self, session)
@@ -227,7 +323,7 @@ index d5f2844..d6bafc1 100755
  		cbcfg.DEBUG("[Chromium Plugin] ==== >> default mute [%d]" % self.isMute)		
  
  		command = "/usr/local/chromium/run.sh "
-@@ -154,9 +150,9 @@ class BBrowserLauncher(Screen):
+@@ -154,15 +150,15 @@ class BBrowserLauncher(Screen):
  		#os.system(command)
  		subprocess.call(command, shell=True)
  
@@ -240,7 +336,14 @@ index d5f2844..d6bafc1 100755
  
  		self.virtual_keyboard_data = None
  		self.virtual_keyboard_closed = True
-@@ -171,50 +167,44 @@ class BBrowserLauncher(Screen):
+ 
+ 	def GetCurrentFeId(self):
+-		print "BBrowserLauncher:GetCurrentFeId"
++		print("BBrowserLauncher:GetCurrentFeId")
+ 		feId = -1
+ 		sref = self.session.nav.getCurrentService()
+ 		if sref is not None:
+@@ -171,59 +167,53 @@ class BBrowserLauncher(Screen):
  			if feDatas and len(feDatas):
  				feData = ConvertToHumanReadable(feDatas)
  				feId = int(feData["tuner_number"])
@@ -248,7 +351,8 @@ index d5f2844..d6bafc1 100755
  		return feId
  
  	def TryCloseFrontend(self, feId):
- 		print "BBrowserLauncher:TryCloseFrontend"
+-		print "BBrowserLauncher:TryCloseFrontend"
++		print("BBrowserLauncher:TryCloseFrontend")
  		res_mgr = eDVBResourceManager.getInstance()
  		if res_mgr :
 -		        raw_channel = res_mgr.allocateRawChannel(feId)
@@ -270,15 +374,17 @@ index d5f2844..d6bafc1 100755
  		return False
  
  	def _cb_DvbappLockTimer(self):
- 		print "BBrowserLauncher:_cb_DvbappLockTimer"
+-		print "BBrowserLauncher:_cb_DvbappLockTimer"
 -		self.dvbappLockTimer.stop()                                                                                                                            
 -		dvbapp_lock()                                                                                                                                          
 -                                                                                                                                                               
++		print("BBrowserLauncher:_cb_DvbappLockTimer")
 +		self.dvbappLockTimer.stop()
 +		dvbapp_lock()
 +
  	def Exit(self):
- 		print "BBrowserLauncher:Exit"
+-		print "BBrowserLauncher:Exit"
++		print("BBrowserLauncher:Exit")
  		if self.isMute :
  			VolumeControl.instance.volctrl.volumeMute()
  		else :
@@ -289,7 +395,7 @@ index d5f2844..d6bafc1 100755
  		self.closeTimer.start(1500)
  
  	def _cb_CloseTimer(self):
- 		print "BBrowserLauncher:_cb_CloseTimer"
+-		print "BBrowserLauncher:_cb_CloseTimer"
 -	        self.closeTimer.stop()                                                                                                                                 
 -       	                                                                                                                                                        
 -		self.pServerThread.kill()                                                                                                                              
@@ -299,6 +405,7 @@ index d5f2844..d6bafc1 100755
 -                                                                                                                                                               
 -		if cbcfg.g_service is not None:                                                                                                                  
 -                	self.session.nav.playService(cbcfg.g_service)                                                                                            
++		print("BBrowserLauncher:_cb_CloseTimer")
 +		self.closeTimer.stop()
 +		self.pServerThread.kill()
 +		self.pServerThread.join()
@@ -308,7 +415,32 @@ index d5f2844..d6bafc1 100755
  		self.close()
  
  	def _virtual_keyborad_closed_cb(self, data):
-@@ -244,14 +234,14 @@ def stt_event_callback(text):
+-		print "BBrowserLauncher:_virtual_keyborad_closed_cb"
++		print("BBrowserLauncher:_virtual_keyborad_closed_cb")
+ 		self.virtual_keyboard_data = data
+ 		self.virtual_keyboard_closed = True
+ 
+ 	def GetVirtualKeyboardData(self):
+-		print "BBrowserLauncher: GetVirtualKeyboardData"
++		print("BBrowserLauncher: GetVirtualKeyboardData")
+ 		if self.virtual_keyboard_closed == False:
+ 			return None
+ 		eRCInput.getInstance().lock()
+@@ -232,7 +222,7 @@ class BBrowserLauncher(Screen):
+ 		return self.virtual_keyboard_data
+ 
+ 	def ShowVirtualKeyborad(self, default_data='http://'):
+-		print "BBrowserLauncher:ShowVirtualKeyborad"
++		print("BBrowserLauncher:ShowVirtualKeyborad")
+ 		eRCInput.getInstance().unlock()
+ 		self.virtual_keyboard_data = None
+ 		self.virtual_keyboard_closed = False
+@@ -240,18 +230,18 @@ class BBrowserLauncher(Screen):
+ 
+ global_session = None
+ def stt_event_callback(text):
+-	print "stt_event_callback"
++	print("stt_event_callback")
  	url = "https://www.google.co.kr/search?q=" + text.replace(' ', '+')
  	if global_session is not None and _g_locked == False:
  		dvbapp_unlock()
@@ -319,36 +451,40 @@ index d5f2844..d6bafc1 100755
  		cbcfg.g_browser = global_session.open(BBrowserLauncher, mode="chromiumos_stt", url=url)
  
  def start_youtubetv_main(session, **kwargs):
- 	print "start_youtubetv_main"
+-	print "start_youtubetv_main"
 -        def _cb_youtubetv_close(ret):
 -       	        if ret:
++	print("start_youtubetv_main")
 +	def _cb_youtubetv_close(ret):
 +		if ret:
  			dvbapp_unlock()
  			cbcfg.g_browser = session.open(BBrowserLauncher, mode="youtubetv")
  
-@@ -260,21 +250,21 @@ def start_youtubetv_main(session, **kwargs):
+@@ -260,32 +250,31 @@ def start_youtubetv_main(session, **kwargs):
  	else:
  		session.openWithCallback(_cb_youtubetv_close, YoutubeTVWindow)
  
 -def menu_start_youtube(menuid, **kwargs):                                         
-+def menu_start_youtube(menuid, **kwargs):
- 	print " menu_start_youtube"
+-	print " menu_start_youtube"
 -        if menuid == "mainmenu":                                                  
 -       	        return [(_("YouTubeTV"), start_youtubetv_main, "youtubetv", 46)]
 -        return []
++def menu_start_youtube(menuid, **kwargs):
++	print(" menu_start_youtube")
 +		if menuid == "mainmenu":
 +			return [(_("YouTubeTV"), start_youtubetv_main, "youtubetv", 46)]
 +		return []
  
 -def plugin_setting_youtube(session, **kwargs):                                                                                                                 
-+def plugin_setting_youtube(session, **kwargs):
- 	print "plugin_setting_youtube"
+-	print "plugin_setting_youtube"
 -        session.open(YoutubeTVSettings)    
++def plugin_setting_youtube(session, **kwargs):
++	print("plugin_setting_youtube")
 +	session.open(YoutubeTVSettings)
  
  def plugin_start_chromiumos(session, **kwargs):
- 	print "plugin_start_chromiumos"
+-	print "plugin_start_chromiumos"
++	print("plugin_start_chromiumos")
  	dvbapp_unlock()
 -        def _cb_chromiumos_close(ret):
 -                if ret:
@@ -357,7 +493,11 @@ index d5f2844..d6bafc1 100755
  			dvbapp_unlock()
  			cbcfg.g_browser = session.open(BBrowserLauncher, mode="chromiumos")
  	cbcfg.g_browser = session.openWithCallback(_cb_chromiumos_close, ChromiumOSWindow)
-@@ -285,7 +275,6 @@ def session_start_main(session, reason, **kwargs):
+ 
+ def session_start_main(session, reason, **kwargs):
+-	print "session_start_main"
++	print("session_start_main")
+ 	PServerThread.close()
  	try :
  		from Plugins.SystemPlugins.BluetoothSetup.bt import pybluetooth_instance
  		pybluetooth_instance.addTextHandler(stt_event_callback)
