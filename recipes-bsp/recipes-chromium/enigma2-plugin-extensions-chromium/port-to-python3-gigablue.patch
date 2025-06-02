@@ -442,11 +442,11 @@ index d5f2844..542641d 100755
 -	print "stt_event_callback"
 +	print("stt_event_callback")
  	url = "https://www.google.co.kr/search?q=" + text.replace(' ', '+')
++	global _g_locked
  	if global_session is not None and _g_locked == False:
  		dvbapp_unlock()
 -        	global _g_locked                                                                                                                                       
 -        	_g_locked = True
-+		global _g_locked                                                                                                                                       
 +		_g_locked = True
  		cbcfg.g_browser = global_session.open(BBrowserLauncher, mode="chromiumos_stt", url=url)
  
@@ -471,9 +471,9 @@ index d5f2844..542641d 100755
 -        return []
 +def menu_start_youtube(menuid, **kwargs):
 +	print(" menu_start_youtube")
-+		if menuid == "mainmenu":
-+			return [(_("YouTubeTV"), start_youtubetv_main, "youtubetv", 46)]
-+		return []
++	if menuid == "mainmenu":
++		return [(_("YouTubeTV"), start_youtubetv_main, "youtubetv", 46)]
++	return []
  
 -def plugin_setting_youtube(session, **kwargs):                                                                                                                 
 -	print "plugin_setting_youtube"
