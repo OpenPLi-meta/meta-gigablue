@@ -4,7 +4,7 @@ require conf/license/license-close.inc
 
 inherit allarch
 
-SRC_URI = "file:/firmware-aic8800D80.zip"
+SRC_URI = "file://firmware-aic8800D80.zip"
 
 S = "${WORKDIR}"
 
