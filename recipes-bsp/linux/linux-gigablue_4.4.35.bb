@@ -10,7 +10,7 @@ SRCDATE = "20220929"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".7"
+MACHINE_KERNEL_PR_append = ".8"
 
 SRC_URI[md5sum] = "5724ab24328d5767209cea0ea5a123b4"
 SRC_URI[sha256sum] = "f1880fbf67022983b6ed231c54aaa00bc1f18b2db4a275e44ad0b7d4997436cf"
@@ -35,8 +35,16 @@ SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-$
     file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
     file://0003-dont-mark-register-as-const.patch \
     file://wifi-linux_4.4.183.patch \
-    file://fix-dvbcore-buffer-read.patch \
-    file://make-yyloc-declaration-extern.patch \
+    file://fix-dvbcore.patch \
+    file://fix-multiple-defs-yyloc.patch \
+    file://fix_highspeed_sdio.patch \
+    file://fix-build-with-binutils-2.41.patch \
+    file://extend_modules_space.patch \
+    file://cfg80211_Add_option_to_report_the_bss_entry_in_connect_result.patch \
+"
+
+SRC_URI:append:gbtrio4k = " \
+    file://emmc_ks81aa80_05s000_reboot.patch \
 "
 
 S = "${WORKDIR}/linux-${PV}"

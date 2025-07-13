@@ -1,6 +1,6 @@
 require conf/machine/include/gigablue-arm.inc
 
-MACHINE_KERNEL_PR = "${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'r8' , 'r7', d)}"
+MACHINE_KERNEL_PR = "${@bb.utils.contains('MACHINE', 'gbquad4kpro', 'r9' , 'r7', d)}"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
     gst-plugin-dvbmediasink \
