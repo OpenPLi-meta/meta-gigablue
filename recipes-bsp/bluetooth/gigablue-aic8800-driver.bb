@@ -1,4 +1,4 @@
-SUMMARY = "Gigablue Drivers for AIC8800 for ${MACHINEBUID}"
+SUMMARY = "Gigablue Drivers for AIC8800 for ${MACHINE}"
 SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "CLOSED"
@@ -13,7 +13,7 @@ PR = "r1"
 
 SRC_URI  = "https://source.mynonpublic.com/gigablue/drivers/aic8800-${SRCDATE}.zip"
 
-S = "${WORKDIR}/sources"
+S = "${WORKDIR}"
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
@@ -33,7 +33,7 @@ do_install() {
     install -d ${D}/${sysconfdir}/modules-load.d
     echo aic_load_fw > ${D}/${sysconfdir}/modules-load.d/aic_load_fw.conf
     echo aic8800_fdrv > ${D}/${sysconfdir}/modules-load.d/aic8800_fdrv.conf
-    echo aic_btusb.ko > ${D}/${sysconfdir}/modules-load.d/aaic_btusb.conf
+    echo aic_btusb.ko > ${D}/${sysconfdir}/modules-load.d/aic_btusb.conf
 }
 
 FILES_${PN} += "${sysconfdir} /lib/modules/${KV}"
