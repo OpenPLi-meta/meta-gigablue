@@ -10,7 +10,7 @@ SRCDATE = "20220929"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".8"
+MACHINE_KERNEL_PR:append = ".8"
 
 SRC_URI[md5sum] = "5724ab24328d5767209cea0ea5a123b4"
 SRC_URI[sha256sum] = "f1880fbf67022983b6ed231c54aaa00bc1f18b2db4a275e44ad0b7d4997436cf"
@@ -43,7 +43,7 @@ SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-$
     file://cfg80211_Add_option_to_report_the_bss_entry_in_connect_result.patch \
 "
 
-SRC_URI_append_gbtrio4k = " \
+SRC_URI:append:gbtrio4k = " \
     file://emmc_ks81aa80_05s000_reboot.patch \
 "
 
