@@ -37,7 +37,6 @@ SRC_URI += "http://downloads.openpli.org/archive/gigablue/gigablue-linux-${PV}-$
     file://wifi-linux_4.4.183.patch \
     file://fix-dvbcore.patch \
     file://fix-multiple-defs-yyloc.patch \
-    file://fix_highspeed_sdio.patch \
     file://fix-build-with-binutils-2.41.patch \
     file://extend_modules_space.patch \
     file://cfg80211_Add_option_to_report_the_bss_entry_in_connect_result.patch \
