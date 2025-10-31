@@ -55,8 +55,11 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-rtl8192cu \
 	kernel-module-rtl8xxxu \
 	kernel-module-zd1211rw \
+	gigablue-uwe5621-firmware \
+	gigablue-hciattach-gbtrio4kpro \
+	gigablue-bluetooth-keymaps \
 	"
-	
+
 MACHINE_FEATURES += " alsa usbhost wlan switchoff osdposition hdmicec"
 
 IMAGE_CLASSES  += "gigablue-emmc_image"
@@ -74,6 +77,7 @@ PREFERRED_PROVIDER_virtual/egl = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles1 = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles2 = "gigablue-opengl-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs = "gigablue-blindscan-${MACHINE}"
+PREFERRED_PROVIDER_virtual/kodi = "stb-kodi-gbmv200"
 
 PREFERRED_RPROVIDER_showiframe = "gigablue-showiframe-${MACHINE}"
 PREFERRED_RPROVIDER_aio-grab = "gigablue-grab-${MACHINE}"
@@ -82,8 +86,8 @@ PREFERRED_PROVIDER_virtual/gstreamer1.0-dvbmediasink ?= "gstreamer1.0-plugin-dvb
 require conf/machine/include/tune-cortexa15.inc
 
 # Qt
-PACKAGECONFIG_GL_pn-qtbase = "gles2 eglfs linuxfb"
-PACKAGECONFIG_FB_pn-qtbase = " "
+PACKAGECONFIG_GL:pn-qtbase = "gles2 eglfs linuxfb"
+PACKAGECONFIG_FB:pn-qtbase = " "
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	ffmpeg \
@@ -97,7 +101,7 @@ IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 
-IMAGE_CMD_gigablueemmc_append = "\
+IMAGE_CMD:gigablueemmc:append = "\
     mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1; \
@@ -105,6 +109,7 @@ IMAGE_CMD_gigablueemmc_append = "\
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs3; \
     mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs4; \
     cp -fR ${IMAGE_ROOTFS}/* ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1/; \
+    mv ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/gbtrio4k_fastboot.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin; \
     dd if=/dev/zero of=${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/rootfs.ext4 seek=${IMAGE_ROOTFS_SIZE} count=60 bs=1024; \
     mkfs.ext4 -F -i 4096 ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/rootfs.ext4 -d ${DEPLOY_DIR_IMAGE}/userdata; \
     cd ${IMAGE_ROOTFS}; \
@@ -122,6 +127,34 @@ IMAGE_CMD_gigablueemmc_append = "\
     cd ${DEPLOY_DIR_IMAGE}; \
     zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_multiboot_ofgwrite.zip ${IMAGEDIR}/*; \
     zip -j ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${DEPLOY_DIR_IMAGE}/usb_update.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/apploader.bin; \
+    rm -Rf ${IMAGEDIR}; \
+    "
+
+IMAGE_CMD:gigablueemmc:append = "\
+    mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
+    mkdir -p ${DEPLOY_DIR_IMAGE}/userdata; \
+    mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1; \
+    mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs2; \
+    mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs3; \
+    mkdir -p ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs4; \
+    cp -fR ${IMAGE_ROOTFS}/* ${DEPLOY_DIR_IMAGE}/userdata/linuxrootfs1/; \
+    mv ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/gbtrio4kpro_fastboot.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin; \
+    dd if=/dev/zero of=${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/rootfs.ext4 seek=${IMAGE_ROOTFS_SIZE} count=60 bs=1024; \
+    mkfs.ext4 -F -i 4096 ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/rootfs.ext4 -d ${DEPLOY_DIR_IMAGE}/userdata; \
+    cd ${IMAGE_ROOTFS}; \
+    tar -cvf ${DEPLOY_DIR_IMAGE}/rootfs.tar -C ${IMAGE_ROOTFS} .; \
+    mv ${DEPLOY_DIR_IMAGE}/rootfs.tar ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/rootfs.tar; \
+    bzip2 ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/rootfs.tar; \
+    cp ${DEPLOY_DIR_IMAGE}/uImage ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/${KERNEL_FILE}; \
+    cp ${DEPLOY_DIR_IMAGE}/uImage ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${KERNEL_FILE}; \
+    if [ -e ${DEPLOY_DIR_IMAGE}/logo-${DISTRO_NAME}.img ]; then \
+        cp -f ${DEPLOY_DIR_IMAGE}/logo-${DISTRO_NAME}.img ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/logo.img; \
+    fi; \
+    echo ${IMAGEVERSION} > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/imageversion; \
+    cd ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions; \
+    mkupdate -s 00000003-00000001-01010101 -f ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/emmc_partitions.xml -d ${DEPLOY_DIR_IMAGE}/usb_update.bin; \ 
+    cd ${DEPLOY_DIR_IMAGE}; \
+    zip -j ${DISTRO_NAME}-${DISTRO_VERSION}-gbtrio4kpro_usb.zip ${DEPLOY_DIR_IMAGE}/usb_update.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/apploader.bin; \
     rm -f ${DEPLOY_DIR_IMAGE}/*.ext4; \
     rm -f ${DEPLOY_DIR_IMAGE}/*.manifest; \
     rm -f ${DEPLOY_DIR_IMAGE}/.ext4; \
@@ -132,6 +165,6 @@ IMAGE_CMD_gigablueemmc_append = "\
     rm -Rf ${DEPLOY_DIR_IMAGE}/userdata; \
     "
 
-IMAGE_CMD_prepend = " \
+IMAGE_CMD:prepend = " \
     rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
     "
