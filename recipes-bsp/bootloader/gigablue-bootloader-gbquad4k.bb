@@ -1,0 +1,11 @@
+SRCDATE = "20181121r1"
+
+BOLT_DATE="2018-11-20"
+BOLT_VERSION="1846"
+BOLT_MD5SUM="a3b589a7ba55d4616a723e1f834ab391"
+BOLT_DEVICE="/dev/mtdblock0"
+
+require gigablue-bootloader.inc
+
+SRC_URI[md5sum] = "1bd92c570c8a9b8faace8e16dd99b168"
+SRC_URI[sha256sum] = "e064c3936adf4385b6cb85f5d4df3023c7aed71a8b17a3dee164393f325523ea"

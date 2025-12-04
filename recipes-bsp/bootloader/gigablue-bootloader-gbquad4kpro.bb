@@ -1,6 +1,11 @@
 SRCDATE = "20250623r0"
 
-require gigablue-initrd-cfe.inc
+BOLT_DATE="2025-06-23"
+BOLT_VERSION="2525"
+BOLT_MD5SUM="7ed40d94e8e033fd9c468cba16772434"
+BOLT_DEVICE="/dev/mtdblock0"
+
+require gigablue-bootloader.inc
 
 SRC_URI[md5sum] = "ba962d8f53b46bc74e0389f21da60158"
 SRC_URI[sha256sum] = "b97963e2d6c79c9309020d241ded531dc2408252395b8c374636822afdd3d8b3"

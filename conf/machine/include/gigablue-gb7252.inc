@@ -52,6 +52,10 @@ EXTRA_IMAGEDEPENDS = "\
     gigablue-initrd-cfe-${MACHINE} \
     "
 
+OPTIONAL_BSP_PACKAGES += "\
+    gigablue-bootloader-${MACHINE} \
+    "
+
 OPTIONAL_BSP_ENIGMA2_PACKAGES = "\
     enigma2-plugin-extensions-hbbtv-gb \
     enigma2-plugin-extensions-chromium \
