@@ -1,4 +1,4 @@
-SUMMARY = "gbtrio4k partitions files"
+SUMMARY = "Gigablue TRIO 4k Pro partitions files"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
@@ -6,10 +6,10 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit deploy
 
-SRCDATE = "20200624"
+SRCDATE = "20250507"
 PR = "${SRCDATE}"
 
-S = "${WORKDIR}/patitions"
+S = "${WORKDIR}/partitions"
 
 SRC_URI = "http://downloads.openpli.org/archive/gigablue/${MACHINE}-partitions-${SRCDATE}.zip"
 
@@ -34,7 +34,7 @@ do_deploy() {
 
 addtask deploy before do_build after do_install
 
-SRC_URI[md5sum] = "52fea091319546d8c647d43379912fdb"
-SRC_URI[sha256sum] = "1bea4112d8a23c5b93222c07aeb7bf58d7478ef9c50433502bf8abe8e847cadd"
+SRC_URI[md5sum] = "1680679a258e4fa70a10263af5705ad6"
+SRC_URI[sha256sum] = "6c213d02d8d96c63d0b4418f4b82ac49552564b85fbe9b84f8108edc061842ce"
 
 INSANE_SKIP_${PN} += "already-stripped"
